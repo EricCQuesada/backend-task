@@ -30,8 +30,8 @@ import { EmailService } from './Services/email/email.service';
         name: 'BACKEND_TASK_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqps://enmmezlw:anz3ThOaEvBR1thz70_zy7-Xfxc9mL-s@cow.rmq2.cloudamqp.com/enmmezlw'],
-          queue: 'backend-task-queue',
+          urls: [process.env.RABBITMQ_URL],
+          queue: process.env.RABBITMQ_QUEUE,
           queueOptions: {
             durable: true
           },
@@ -41,7 +41,7 @@ import { EmailService } from './Services/email/email.service';
 
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.office365.com',
+        host: process.ENV.SMTP_HOST,
         port: 587,
         secure: false,
         auth: {
